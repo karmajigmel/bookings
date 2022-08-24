@@ -48,3 +48,19 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 		StringMap: stringMap,
 	})
 }
+
+// SearchIndex is the about page handler
+func (m *Repository) SearchIndex(w http.ResponseWriter, r *http.Request) {
+	stringMap := make(map[string]string)
+	render.RenderTemplate(w, "searchindex.page.html", &models.TemplateData{
+		StringMap: stringMap,
+	})
+}
+
+// SearchIndex is the about page handler
+func (m *Repository) Result(w http.ResponseWriter, r *http.Request) {
+	stringMap := make(map[string]string)
+	render.RenderTemplate(w, "result.page.html", &models.TemplateData{
+		StringMap: stringMap,
+	})
+}
