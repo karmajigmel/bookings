@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/karmajigmel/bookings/pkg/config"
@@ -28,39 +29,28 @@ func NewHandlers(r *Repository) {
 
 // Home is the home page handler
 func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
-	remoteIP := r.RemoteAddr
-	m.App.Session.Put(r.Context(), "remote_ip", remoteIP)
-
-	render.RenderTemplate(w, "home.page.html", &models.TemplateData{})
+	render.RenderTemplate(w, r, "home.page.html", &models.TemplateData{})
 }
 
 // About is the about page handler
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
-
-	// perform some logic
-	stringMap := make(map[string]string)
-	stringMap["test"] = "Hello, again."
-
-	remoteIP := m.App.Session.GetString(r.Context(), "remote_ip")
-	stringMap["remote_ip"] = remoteIP
-
-	render.RenderTemplate(w, "about.page.html", &models.TemplateData{
-		StringMap: stringMap,
-	})
+	render.RenderTemplate(w, r, "about.page.html", &models.TemplateData{})
 }
 
 // SearchIndex is the about page handler
 func (m *Repository) SearchIndex(w http.ResponseWriter, r *http.Request) {
-	stringMap := make(map[string]string)
-	render.RenderTemplate(w, "searchindex.page.html", &models.TemplateData{
-		StringMap: stringMap,
-	})
+	render.RenderTemplate(w, r, "searchindex.page.html", &models.TemplateData{})
+}
+
+// PostSearchIndex is the about page handler
+func (m *Repository) PostSearchIndex(w http.ResponseWriter, r *http.Request) {
+	name := r.Form.Get("name")
+	dob := r.Form.Get("dob")
+
+	w.Write([]byte(fmt.Sprintf("Name is %s and date of birth is %s", name, dob)))
 }
 
 // SearchIndex is the about page handler
 func (m *Repository) Result(w http.ResponseWriter, r *http.Request) {
-	stringMap := make(map[string]string)
-	render.RenderTemplate(w, "result.page.html", &models.TemplateData{
-		StringMap: stringMap,
-	})
+	render.RenderTemplate(w, r, "result.page.html", &models.TemplateData{})
 }
