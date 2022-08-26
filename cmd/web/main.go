@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/alexedwards/scs/v2"
-	"github.com/karmajigmel/bookings/pkg/config"
-	"github.com/karmajigmel/bookings/pkg/handlers"
-	"github.com/karmajigmel/bookings/pkg/render"
+	"github.com/karmajigmel/bookings/internal/config"
+	"github.com/karmajigmel/bookings/internal/handlers"
+	"github.com/karmajigmel/bookings/internal/render"
 )
 
 const portNumber = ":8080"
