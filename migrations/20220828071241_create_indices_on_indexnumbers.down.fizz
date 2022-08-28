@@ -1,0 +1,2 @@
+drop_index("indexnumbers", "indexnumbers_stud_name_stud_dob_idx")
+drop_index("indexnumbers", "indexnumbers_stud_indexno_stud_dob_idx")
